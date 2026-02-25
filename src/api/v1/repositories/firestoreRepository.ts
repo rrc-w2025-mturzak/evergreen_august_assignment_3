@@ -22,3 +22,27 @@ export const addEvent = async (item:EventCreateRequest): Promise<string> => {
     return docRef.id;
 };
 
+export const getEventById = async (id: string): Promise<EventDTO | undefined> => {
+    const docRef: DocumentReference = db.collection("events").doc(id);
+
+    const doc = await docRef.get();
+
+    if (doc.exists) {
+        let data = doc.data();
+
+        return {
+            id: doc.id,
+            name: data!.name,
+            date: data!.date,
+            capacity: data!.capacity,
+            registrationCount: data!.registrationCount,
+            status: data!.status,
+            category: data!.category,
+            createdAt: data!.createdAt,
+            updatedAt: data!.updatedAt,
+
+        }
+    } else {
+        console.log("No such event!");
+    }
+};
