@@ -46,3 +46,48 @@ export const getEventById = async (id: string): Promise<EventDTO | undefined> =>
         console.log("No such event!");
     }
 };
+
+export const getEvents = async (): Promise<Array<EventDTO> | undefined> => {
+
+    const snapshot: QuerySnapshot = await db.collection("events").get();
+
+    const events: EventDTO[] = []
+    snapshot.forEach((doc) => {
+        let data = doc.data();
+        events.push({
+            id: doc.id,
+            name: data!.name,
+            date: data!.date,
+            capacity: data!.capacity,
+            registrationCount: data!.registrationCount,
+            status: data!.status,
+            category: data!.category,
+            createdAt: data!.createdAt,
+            updatedAt: data!.updatedAt,
+        });
+    });
+
+    return events;
+};
+
+export const updateEvent = async (id: string , item: EventCreateRequest): Promise<void> => {
+
+    const docRef: DocumentReference = db.collection("events").doc(id);
+
+    await docRef.update({
+        name: item.name,
+        capacity: item.capacity,
+        registrationCount: item.registrationCount,
+        status: item.status,
+        category: item.category,
+        updatedAt: new Date(),
+    });
+    return;
+};
+
+export const deleteEvent = async (id: string): Promise<void> => {
+
+    const docRef: DocumentReference = db.collection("events").doc(id);
+
+    await docRef.delete();
+};
