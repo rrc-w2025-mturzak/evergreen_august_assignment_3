@@ -45,3 +45,24 @@ export const getAllEvent = async (req: Request, res: Response) => {
     }
 }
 
+export const updateEventByIdAsync = async (req: Request, res: Response) => {
+    let id: string = req.params.id as string; 
+    let request: EventCreateRequest = {
+        name: req.body.name,
+        capacity: req.body.capacity,
+        registrationCount: req.body.registrationCount,
+        status: req.body.status,
+        category: req.body.category
+    }
+
+    await updateEventById(id, request)
+
+    res.status(HTTP_STATUS.NO_CONTENT).send(`Event ${id} was updated`);
+}
+
+export const deleteEventByIdAsync = async (req: Request, res: Response) => {
+    let id = req.params.id as string;
+    await deleteEventById(id)
+
+    res.status(HTTP_STATUS.NO_CONTENT).send(`Event ${id} was deleted`);
+}
