@@ -25,3 +25,23 @@ export const createEvent = async (req: Request, res: Response) => {
     res.status(HTTP_STATUS.CREATED).send(result)
 }
 
+export const getEventById = async (req: Request, res: Response) => {
+    try {
+        let id = req.params.id as string;
+        let results = await getEventByIdAsync(id)
+
+        res.status(HTTP_STATUS.OK).json(successResponse(results, "Event retrieved"))
+    } catch (error) {
+        res.status(HTTP_STATUS.INTERNAL_SERVER_ERROR).json({ message: "Internal Server Error"})
+    }
+}
+
+export const getAllEvent = async (req: Request, res: Response) => {
+    try {
+        const products = await getAllEvents();
+        res.status(HTTP_STATUS.OK).json(successResponse(products, "Events retrieved"))
+    } catch (error) {
+        res.status(HTTP_STATUS.INTERNAL_SERVER_ERROR).json({ message: "Internal Server Error"})
+    }
+}
+
