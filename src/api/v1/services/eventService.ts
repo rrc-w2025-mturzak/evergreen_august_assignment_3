@@ -3,7 +3,7 @@ import { EventResponse } from "../models/eventResponse";
 import { EventCreateRequest } from "../models/eventCreateRequestModel";
 import { EventDTO } from "../models/eventDTO";
 
-export const createNewEvent =  async (item: EventCreateRequest): Promise<string> => {
+export const createNewEventt =  async (item: EventCreateRequest): Promise<string> => {
     return await addEvent(item); 
 }
 
@@ -18,4 +18,17 @@ export const getEventByIdAsync = async (id: string): Promise<EventResponse> => {
         status: entity?.status,
         category: entity?.category
     };
+}
+
+export const getAllEvents = async (): Promise<Array<EventDTO> | undefined> => {
+    return await getEvents();
+}
+
+export const updateEventById = async (id: string, item: EventCreateRequest): Promise<void> => {
+    await updateEvent(id, item);
+    return;
+}
+
+export const deleteEventById = async (id: string): Promise<void> => {
+    await deleteEvent(id)
 }
