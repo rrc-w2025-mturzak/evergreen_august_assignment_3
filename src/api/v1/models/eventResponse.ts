@@ -1,8 +1,9 @@
 export interface EventResponse {
-    name: string;
-    date: Date;
-    capacity: number;
-    registrationCount: number;
-    status: string;
-    category: string;
+    id: string | undefined;
+    name: string | undefined;
+    date: Date | undefined;
+    capacity: number | undefined;
+    registrationCount: number | undefined;
+    status: string | undefined;
+    category: string | undefined;
 }
