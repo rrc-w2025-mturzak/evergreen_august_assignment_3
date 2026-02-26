@@ -6,7 +6,7 @@ import { EventDTO } from "../models/eventDTO";
 
 export const addEvent = async (item:EventCreateRequest): Promise<string> => {
 
-    const docRef: DocumentReference = db.collection("events").doc();
+    const docRef: DocumentReference = db.collection("events").doc("evt_000002");
 
     const itemEntity: EventModel = {
         name: item.name,
@@ -57,13 +57,13 @@ export const getEvents = async (): Promise<Array<EventDTO> | undefined> => {
         events.push({
             id: doc.id,
             name: data!.name,
-            date: data!.date,
+            date: data!.date.toDate(),
             capacity: data!.capacity,
             registrationCount: data!.registrationCount,
             status: data!.status,
             category: data!.category,
-            createdAt: data!.createdAt,
-            updatedAt: data!.updatedAt,
+            createdAt: data!.createdAt.toDate(),
+            updatedAt: data!.updatedAt.toDate()
         });
     });
 

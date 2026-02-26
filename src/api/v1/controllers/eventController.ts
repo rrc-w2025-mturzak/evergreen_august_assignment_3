@@ -38,8 +38,8 @@ export const getEventById = async (req: Request, res: Response) => {
 
 export const getAllEvent = async (req: Request, res: Response) => {
     try {
-        const products = await getAllEvents();
-        res.status(HTTP_STATUS.OK).json(successResponse(products, "Events retrieved"))
+        const events = await getAllEvents() ?? [];
+        res.status(HTTP_STATUS.OK).json({ message: "Events retrieved", count: events.length, data: events });
     } catch (error) {
         res.status(HTTP_STATUS.INTERNAL_SERVER_ERROR).json({ message: "Internal Server Error"})
     }

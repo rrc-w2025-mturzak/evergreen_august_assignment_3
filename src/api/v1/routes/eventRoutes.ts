@@ -13,8 +13,8 @@ const eventRouter: Router = express.Router();
 eventRouter.get("/health", healthData);
 eventRouter.get("/events", getAllEvent);
 eventRouter.get("/events/:id", getEventById);
-eventRouter.post("/event", createEvent);
-eventRouter.put("/event/:id", updateEventByIdAsync);
+eventRouter.post("/events", createEvent);
+eventRouter.put("/events/:id", updateEventByIdAsync);
 eventRouter.delete("/events/:id", deleteEventByIdAsync);
 
 export default eventRouter;
