@@ -18,9 +18,9 @@ export const createEvent = async (req: Request, res: Response) => {
         name: req.body.name,
         date: req.body.date,
         capacity: req.body.capacity,
-        registrationCount: req.body.registrationCount,
-        status: req.body.status,
-        category: req.body.category
+        registrationCount: req.body.registrationCount ?? 0,
+        status: req.body.status ?? "active",
+        category: req.body.category ?? "general"
     }
     let result = await createNewEventt(requestEvent)
     res.status(HTTP_STATUS.CREATED).send(result)
