@@ -5,16 +5,16 @@ import { healthData,
         getAllEvent, 
         updateEventByIdAsync, 
         deleteEventByIdAsync } from "../controllers/eventController";
-// import { validateRequest } from "../middleware/validateRequest";
-// import { postSchemas } from "../validation/productValidation";
+import { validateRequest } from "../middleware/validateRequest";
+import { eventSchemas } from "../validation/eventValidation";
 
 const eventRouter: Router = express.Router();
 
 eventRouter.get("/health", healthData);
 eventRouter.get("/events", getAllEvent);
-eventRouter.get("/events/:id", getEventById);
-eventRouter.post("/events", createEvent);
-eventRouter.put("/events/:id", updateEventByIdAsync);
-eventRouter.delete("/events/:id", deleteEventByIdAsync);
+eventRouter.get("/events/:id", validateRequest(eventSchemas.getById), getEventById);
+eventRouter.post("/events", validateRequest(eventSchemas.create), createEvent);
+eventRouter.put("/events/:id", validateRequest(eventSchemas.update), updateEventByIdAsync);
+eventRouter.delete("/events/:id", validateRequest(eventSchemas.delete), deleteEventByIdAsync);
 
 export default eventRouter;
