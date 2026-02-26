@@ -12,7 +12,7 @@ export const getEventByIdAsync = async (id: string): Promise<EventResponse> => {
     return {
         id: entity?.id,
         name: entity?.name,
-        date: entity?.date,
+        date: entity?.date.toISOString(),
         capacity: entity?.capacity,
         registrationCount: entity?.registrationCount,
         status: entity?.status,

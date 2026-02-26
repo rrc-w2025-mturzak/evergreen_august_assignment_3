@@ -16,6 +16,7 @@ export const healthData = (req: Request, res: Response) => {
 export const createEvent = async (req: Request, res: Response) => {
     const requestEvent: EventCreateRequest = {
         name: req.body.name,
+        date: req.body.date,
         capacity: req.body.capacity,
         registrationCount: req.body.registrationCount,
         status: req.body.status,
@@ -49,6 +50,7 @@ export const updateEventByIdAsync = async (req: Request, res: Response) => {
     let id: string = req.params.id as string; 
     let request: EventCreateRequest = {
         name: req.body.name,
+        date:req.body.date,
         capacity: req.body.capacity,
         registrationCount: req.body.registrationCount,
         status: req.body.status,

@@ -10,7 +10,7 @@ export const addEvent = async (item:EventCreateRequest): Promise<string> => {
 
     const itemEntity: EventModel = {
         name: item.name,
-        date: new Date,
+        date: item.date,
         capacity: item.capacity,
         registrationCount: item.registrationCount,
         status: item.status,
@@ -57,7 +57,7 @@ export const getEvents = async (): Promise<Array<EventDTO> | undefined> => {
         events.push({
             id: doc.id,
             name: data!.name,
-            date: data!.date.toDate(),
+            date: data!.date,
             capacity: data!.capacity,
             registrationCount: data!.registrationCount,
             status: data!.status,
@@ -76,6 +76,7 @@ export const updateEvent = async (id: string , item: EventCreateRequest): Promis
 
     await docRef.update({
         name: item.name,
+        date: item.date,
         capacity: item.capacity,
         registrationCount: item.registrationCount,
         status: item.status,
