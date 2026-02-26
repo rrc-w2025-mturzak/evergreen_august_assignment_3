@@ -22,8 +22,9 @@ export const createEvent = async (req: Request, res: Response) => {
         status: req.body.status ?? "active",
         category: req.body.category ?? "general"
     }
-    let result = await createNewEventt(requestEvent)
-    res.status(HTTP_STATUS.CREATED).send(result)
+    const id = await createNewEventt(requestEvent); 
+    const data = await getEventByIdAsync(id);
+    res.status(HTTP_STATUS.CREATED).json({ message: "Event created", data})
 }
 
 export const getEventById = async (req: Request, res: Response) => {

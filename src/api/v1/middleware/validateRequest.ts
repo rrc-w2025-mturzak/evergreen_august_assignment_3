@@ -61,11 +61,7 @@ export const validateRequest = (
                 });
 
                 if (error) {
-                    errors.push(
-                        ...error.details.map(
-                            (detail) => `${partName}: ${detail.message}`
-                        )
-                    );
+                    errors.push( ...error.details.map((detail) => detail.message) );
                 } else if (shouldStrip) {
                     return value;
                 }
@@ -106,7 +102,7 @@ export const validateRequest = (
             // If there are any validation errors, return them
             if (errors.length > 0) {
                 return res.status(HTTP_STATUS.BAD_REQUEST).json({
-                    error: `Validation error: ${errors.join(", ")}`,
+                    message: `Validation error: ${errors.join(", ")}`,
                 });
             }
 

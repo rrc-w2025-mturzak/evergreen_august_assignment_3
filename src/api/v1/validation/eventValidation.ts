@@ -5,30 +5,12 @@ export const eventSchemas = {
     // POST /events - Create new post
     create: {
         body: Joi.object({
-            name: Joi.string().min(3).required().messages({
-                "any.required": "Product name is required",
-                "string.empty": "Product name cannot be empty",
-            }),
-            date: Joi.date().greater('now').iso().required().messages({
-                "any.required": "capacity is required",
-                "string.empty": "capacity cannot be empty",
-            }),
-            capacity: Joi.number().min(5).integer().required().messages({
-                "any.required": "capacity is required",
-                "string.empty": "capacity cannot be empty",
-            }),
-            registrationCount: Joi.number().integer() .max(Joi.ref('capacity')).optional().messages({
-                "any.required": "registrationCount is required",
-                "string.empty": "registrationCount cannot be empty",
-            }),
-            status: Joi.number().valid('active', 'cancelled', 'completed').optional().messages({
-                "any.required": "price is required",
-                "string.empty": "price cannot be empty",
-            }),
-            category: Joi.string().valid('conference', 'workshop', 'meetup', 'seminar', 'general').optional().messages({
-                "any.required": "category is required",
-                "string.empty": "category cannot be empty",
-            }),
+            name: Joi.string().min(3).required().messages({}),
+            date: Joi.date().greater('now').iso().required().messages({}),
+            capacity: Joi.number().min(5).integer().required().messages({}),
+            registrationCount: Joi.number().integer() .max(Joi.ref('capacity')).optional().messages({}),
+            status: Joi.string().valid('active', 'cancelled', 'completed').optional().messages({}),
+            category: Joi.string().valid('conference', 'workshop', 'meetup', 'seminar', 'general').optional().messages({}),
         }),
     },
 
