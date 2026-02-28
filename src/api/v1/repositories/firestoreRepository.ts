@@ -6,7 +6,7 @@ import { EventDTO } from "../models/eventDTO";
 
 export const addEvent = async (item:EventCreateRequest): Promise<string> => {
 
-    const docRef: DocumentReference = db.collection("events").doc("evt_000008");
+    const docRef: DocumentReference = db.collection("events").doc("evt_000009");
 
     const itemEntity: EventModel = {
         name: item.name,
