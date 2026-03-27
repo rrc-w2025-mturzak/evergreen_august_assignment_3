@@ -8,6 +8,7 @@ export const getHelmetConfig = () => {
         contentSecurityPolicy: false, // Disable for JSON APIs
         hidePoweredBy: true, // Always hide server info
         noSniff: true, // Always prevent MIME sniffing
+        referrerPolicy: false, // To disable the Referrer-Policy header
     };
 
     if (isDevelopment) {
