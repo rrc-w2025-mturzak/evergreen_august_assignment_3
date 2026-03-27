@@ -9,6 +9,7 @@ export const getHelmetConfig = () => {
         hidePoweredBy: true, // Always hide server info
         noSniff: true, // Always prevent MIME sniffing
         referrerPolicy: false, // To disable the Referrer-Policy header
+        crossOriginOpenerPolicy: false // To disable the Cross-Origin-Opener-Policy header
     };
 
     if (isDevelopment) {
