@@ -10,7 +10,7 @@ export const eventSchemas = {
             capacity: Joi.number().min(5).integer().required().messages({}),
             registrationCount: Joi.number().integer() .max(Joi.ref('capacity')).optional().messages({}),
             status: Joi.string().valid('active', 'cancelled', 'completed').optional().messages({}),
-            category: Joi.string().valid('conference', 'workshop', 'meetup', 'seminar', 'general').optional().messages({}),
+            category: Joi.string().valid('conference', 'workshop', 'meetup', 'seminar', 'general', "networking").optional().messages({}),
         }),
     },
 
