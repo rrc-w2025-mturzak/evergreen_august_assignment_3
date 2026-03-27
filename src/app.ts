@@ -1,6 +1,8 @@
 import express, {Express} from "express";
 import eventRouter from "./api/v1/routes/eventRoutes";
 import morgan from "morgan";
+import dotenv from "dotenv";
+dotenv.config();
 
 const app: Express = express();
 
