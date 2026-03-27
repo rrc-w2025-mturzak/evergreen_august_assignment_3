@@ -83,7 +83,146 @@ eventRouter.get("/health", healthData);
  *                         example: "2026-02-28T01:50:57.242Z"
  */
 eventRouter.get("/events", getAllEvent);
+/**
+ * @openapi
+ * /events/{id}:
+ *   get:
+ *     summary: Retrieve a single event by ID
+ *     tags: [Events]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Event ID
+ *     responses:
+ *       200:
+ *         description: Event found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: "Event retrieved"
+ *                 data:
+ *                   type: object
+ *                   properties:
+ *                     id:
+ *                       type: string
+ *                       example: "evt_000001"
+ *                     name:
+ *                       type: string
+ *                       example: "Tech Conference 2026"
+ *                     date:
+ *                       type: string
+ *                       example: "2026-12-25T09:00:00.000Z"
+ *                     capacity:
+ *                       type: integer
+ *                       example: 200
+ *                     registrationCount:
+ *                       type: integer
+ *                       example: 50
+ *                     status:
+ *                       type: string
+ *                       example: "active"
+ *                     category:
+ *                       type: string
+ *                       example: "conference"
+ *                     createdAt:
+ *                       type: string
+ *                       example: "2026-02-28T01:50:57.242Z"
+ *                     updatedAt:
+ *                       type: string
+ *                       example: "2026-02-28T01:50:57.242Z"
+ *       404:
+ *         description: Event not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: "Event not found"
+ */
 eventRouter.get("/events/:id", validateRequest(eventSchemas.getById), getEventById);
+/**
+ * @openapi
+ * /events:
+ *   post:
+ *     summary: Create a new event
+ *     tags: [Events]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - name
+ *               - date
+ *               - capacity
+ *               - category
+ *             properties:
+ *               name:
+ *                 type: string
+ *                 example: "Small New Event"
+ *               date:
+ *                 type: string
+ *                 example: "2026-12-25T09:00:00.000Z"
+ *               capacity:
+ *                 type: integer
+ *                 example: 50
+ *               category:
+ *                 type: string
+ *                 example: "networking"
+ *     responses:
+ *       201:
+ *         description: Event created successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: "Event created"
+ *                 data:
+ *                   type: object
+ *                   properties:
+ *                     id:
+ *                       type: string
+ *                       example: "evt_123456"
+ *                     name:
+ *                       type: string
+ *                       example: "Small New Event"
+ *                     date:
+ *                       type: string
+ *                       example: "2026-12-25T09:00:00.000Z"
+ *                     capacity:
+ *                       type: integer
+ *                       example: 50
+ *                     registrationCount:
+ *                       type: integer
+ *                       example: 0
+ *                     status:
+ *                       type: string
+ *                       example: "active"
+ *                     category:
+ *                       type: string
+ *                       example: "networking"
+ *                     createdAt:
+ *                       type: string
+ *                       example: "2026-03-01T02:06:12.173Z"
+ *                     updatedAt:
+ *                       type: string
+ *                       example: "2026-03-01T02:06:12.173Z"
+ *       400:
+ *         description: Validation error
+ */
 eventRouter.post("/events", validateRequest(eventSchemas.create), createEvent);
 eventRouter.put("/events/:id", validateRequest(eventSchemas.update), updateEventByIdAsync);
 eventRouter.delete("/events/:id", validateRequest(eventSchemas.delete), deleteEventByIdAsync);
