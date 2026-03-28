@@ -8,4 +8,5 @@ https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Cross-Origin
 
 # Cors 
 
-
+https://portswigger.net/web-security/cors
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS
