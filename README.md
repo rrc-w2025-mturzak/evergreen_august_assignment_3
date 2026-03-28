@@ -40,13 +40,13 @@ https://github.com/rrc-w2025-mturzak/evergreen_august_assignment_3
 
 ## These are all your endpoints while the server is running:
 
-GET
-/health
+### GET
+### /health
 Health check endpoint
 
-GET
-/events
-Retrieve all events example:
+### GET
+### /events
+### Retrieve all events example:
 {
   "message": "Events retrieved",
   "count": 17,
@@ -74,9 +74,9 @@ Retrieve all events example:
       "updatedAt": "2026-03-01T02:06:29.710Z"
     } ...
 
-POST
-/events
-Create a new event body example:
+### POST
+### /events
+### Create a new event body example:
 {
   "name": "Tech Conference 2026",
   "date": "2026-12-25T09:00:00.000Z",
@@ -159,9 +159,9 @@ Must be one of:
 
 Example: "conference"
 
-GET
-/events/{id}
-example: http://localhost:3000/api/v1/events/evt_000001
+### GET
+### /events/{id}
+### example: http://localhost:3000/api/v1/events/evt_000001
 Retrieve a single event by ID example:
 
   "status": "success",
@@ -179,8 +179,8 @@ Retrieve a single event by ID example:
   "message": "Event retrieved"
 }
 
-PUT
-/events/{id}
+### PUT
+### /events/{id}
 Update an existing event following the POST parameters example result:
 {
   "message": "Event updated",
@@ -197,8 +197,8 @@ Update an existing event following the POST parameters example result:
   }
 }
 
-DELETE
-/events/{id}
+### DELETE
+### /events/{id}
 Delete an event by ID expected results
 {
   "message": "Event deleted"
