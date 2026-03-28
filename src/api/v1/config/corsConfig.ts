@@ -1,20 +1,36 @@
 // config/corsConfig.ts
+
+/**
+ * Returns CORS options with:
+ * - Full access in development
+ * - HTTPS-only strict allowlist in production
+ */
 export const getCorsOptions = () => {
     const isDevelopment = process.env.NODE_ENV === "development";
 
     if (isDevelopment) {
-        // Allow all origins in development for easy testing
+        // In development, allow all origins for easy local testing
         return {
             origin: true,
             credentials: true,
         };
     }
 
-    // Strict origins in production
+    // Parse allowed origins from environment variable
+    const allowedOrigins = (process.env.ALLOWED_ORIGINS || "")
+        .split(",")
+        .map(o => o.trim())
+        .filter(origin => origin.startsWith("https://")); // Enforce HTTPS-only
+
     return {
-        origin: process.env.ALLOWED_ORIGINS?.split(",") || [],
-        credentials: true,
-        methods: ["GET", "POST", "PUT", "DELETE"],
-        allowedHeaders: ["Content-Type", "Authorization"],
+        // Only allow origins explicitly listed AND using HTTPS
+        origin: allowedOrigins,
+
+        credentials: true, // Allow cookies / Authorization headers
+        methods: ["GET", "POST", "PUT", "DELETE"], // Allowed HTTP methods
+        allowedHeaders: ["Content-Type", "Authorization"], // Allowed request headers
+
+        // Cache preflight responses for 10 minutes
+        maxAge: 600,
     };
 };
