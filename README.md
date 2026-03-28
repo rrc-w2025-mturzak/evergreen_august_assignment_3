@@ -32,10 +32,13 @@ env file also has the access key for the firebase database to connect
 How to start the server
 run this in terminal: npm run start
 
-Here are endpoint doc's for easy understanding while server is running:
+### Here are endpoint doc's for easy understanding while server is running:
 http://localhost:3000/api-docs
 
-Full documentation at:
+### Alternative documentation from github docs:
+https://rrc-w2025-mturzak.github.io/evergreen_august_assignment_3/
+
+### Full documentation at:
 https://github.com/rrc-w2025-mturzak/evergreen_august_assignment_3
 
 ## These are all your endpoints while the server is running:
