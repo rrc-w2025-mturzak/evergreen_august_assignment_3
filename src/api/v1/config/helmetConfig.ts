@@ -30,4 +30,4 @@ export const getHelmetConfig = () => {
         frameguard: { action: "deny" },
         referrerPolicy: { policy: "no-referrer" },
     });
-};
+}; 

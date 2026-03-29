@@ -33,4 +33,4 @@ export const getCorsOptions = () => {
         // Cache preflight responses for 10 minutes
         maxAge: 600,
     };
-};
+}; 
